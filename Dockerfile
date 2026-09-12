@@ -1,11 +1,11 @@
 FROM oven/bun:1.3.14 AS dependencies
 WORKDIR /app
-COPY package.json bun.lock tsconfig.json ./
+COPY package.json tsconfig.json ./
 COPY apps/web/package.json apps/web/package.json
 COPY apps/api/package.json apps/api/package.json
 COPY packages/contracts/package.json packages/contracts/package.json
 COPY packages/physics/package.json packages/physics/package.json
-RUN bun install --frozen-lockfile
+RUN bun install
 
 FROM dependencies AS build
 COPY . .
