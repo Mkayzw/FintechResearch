@@ -10,7 +10,7 @@ Initial routes:
 - `/mechanics/projectile-motion/` — first core syllabus lesson.
 - `/mechanics/double-pendulum/` — existing Strange Loops advanced study.
 
-The curriculum order is Mechanics, Waves, Matter, Electronics, Telecommunications, then Electricity and Magnetism. Only Mechanics is active initially; future areas remain clearly marked as planned rather than simulated placeholders.
+The platform's editorial rollout is Mechanics, Waves, Matter, Electronics, Telecommunications, then Electricity and Magnetism. This is a product sequence, not a claim about official syllabus ordering. Only Mechanics is active initially; future areas remain clearly marked as planned rather than simulated placeholders.
 
 ## Audience and success
 
@@ -26,11 +26,13 @@ Primary users are Zimbabwe Forms 5–6 Physics students. The first module succee
 
 ## Curriculum evidence
 
-The revised Zimbabwe Upper Secondary Physics syllabus is identified by available search metadata and mirrors as Forms 5–6, 2024–2030. As of 2026-09-12, the official ZIMSEC website is under maintenance and its syllabus portal is unreachable. Therefore:
+The revised Zimbabwe Upper Secondary Physics syllabus is identified by available search metadata and an accessible user-uploaded mirror as Forms 5–6, 2024–2030. As of 2026-09-12, the official ZIMSEC syllabus portal does not return usable syllabus content. Therefore:
 
-- curriculum alignment claims derived from mirrors are labelled provisional;
+- curriculum alignment claims derived from the mirror are labelled **Provisional ZIMSEC alignment**;
 - scientific equations and teaching claims use authoritative general sources;
 - the module must be checked against the official PDF when ZIMSEC restores access.
+
+The evidence register, provisional assessment model and content classification are maintained in `docs/zimsec-curriculum-research.md`. The reusable student flow is defined in `docs/learning-journey.md`.
 
 ## Projectile scientific scope
 
@@ -82,6 +84,8 @@ A fixed-step RK4 trajectory with impact interpolation is used only when drag is 
 7. **Measure like a physicist** — estimate launch speed from measured range/time and inspect uncertainty.
 8. **Exam bench** — formative quiz and worked structured problem.
 9. **Open range** — free laboratory with share/export support as a follow-up if time permits.
+
+These content stops sit inside the canonical Fieldlab journey: orient, observe, predict, explore, derive, apply, investigate, practise, review, extend and connect. The interface must clearly distinguish provisional examinable core, derived core applications and research extensions.
 
 ## Required interactions
 

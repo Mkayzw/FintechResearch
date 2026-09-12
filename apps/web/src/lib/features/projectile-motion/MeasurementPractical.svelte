@@ -215,6 +215,7 @@
 
 <style>
   .practical {
+    min-width: 0;
     padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 6vw, 7rem);
   }
   header {
@@ -327,6 +328,7 @@
     margin: 0;
   }
   .trials {
+    min-width: 0;
     margin-top: 2rem;
     border: 1px solid var(--line);
   }
@@ -352,6 +354,8 @@
     cursor: pointer;
   }
   .table-scroll {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
   }
   table {

@@ -11,6 +11,15 @@
 5. Build `/mechanics/projectile-motion/` as the first reusable core lesson.
 6. Validate direct static requests, browser interactions, tests, build and Docker.
 
+## Mechanics completion phase
+
+1. Record the six-heading provisional Newtonian Mechanics curriculum and module contract.
+2. Add tested pure calculations for rectilinear kinematics, collisions, moments, work-energy, circular motion and gravitation.
+3. Build `/mechanics/` as the connected course map and integrated interactive laboratory.
+4. Link the deep Projectile Motion study into Kinematics and preserve Strange Loops as an explicitly labelled extension.
+5. Add practical methods, misconceptions and exam-mode prompts for every core heading.
+6. Validate all routes, responsive widths, tests, checks, production build and container health.
+
 ## Overview
 
 Build the application as a Bun workspace with a framework-free physics package, a static SvelteKit frontend, and an Elysia production host/API. Work proceeds risk-first: validate equations and integration before investing in animation, then deliver a complete guided twin experiment before expanding the sandbox.

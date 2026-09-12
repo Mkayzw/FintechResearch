@@ -38,10 +38,41 @@ export interface LaunchEstimate {
   maximumSpeedMetersPerSecond: number;
 }
 
+export interface RangePredictionResult {
+  absoluteErrorMeters: number;
+  percentageError: number;
+  band: "excellent" | "close" | "reconsider";
+}
+
 function finitePositive(value: number, name: string): void {
   if (!Number.isFinite(value) || value <= 0) {
     throw new RangeError(`${name} must be finite and positive`);
   }
+}
+
+export function evaluateRangePrediction(
+  predictedRangeMeters: number,
+  actualRangeMeters: number,
+): RangePredictionResult {
+  if (!Number.isFinite(predictedRangeMeters) || predictedRangeMeters < 0) {
+    throw new RangeError("predicted range must be finite and non-negative");
+  }
+  finitePositive(actualRangeMeters, "actual range");
+  const absoluteErrorMeters = Math.abs(
+    predictedRangeMeters - actualRangeMeters,
+  );
+  const percentageError = (absoluteErrorMeters / actualRangeMeters) * 100;
+
+  return {
+    absoluteErrorMeters: Number(absoluteErrorMeters.toFixed(1)),
+    percentageError: Number(percentageError.toFixed(1)),
+    band:
+      percentageError <= 2
+        ? "excellent"
+        : percentageError <= 10
+          ? "close"
+          : "reconsider",
+  };
 }
 
 function vacuumProblem(

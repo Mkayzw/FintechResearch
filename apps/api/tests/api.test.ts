@@ -38,4 +38,16 @@ describe("study API", () => {
     expect(response.headers.get("content-type")).toContain("text/html");
     expect(html).toContain("Beyond 45°");
   });
+
+  test("serves the complete Mechanics course directly", async () => {
+    const response = await app.handle(
+      new Request("http://localhost/mechanics/"),
+    );
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/html");
+    expect(html).toContain("From motion");
+    expect(html).toContain("Gravitational Field");
+  });
 });

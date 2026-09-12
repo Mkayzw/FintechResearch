@@ -2,13 +2,26 @@
 
 ## Platform expansion
 
-- [ ] Replace the homepage with a curriculum map.
-- [ ] Add canonical projectile-motion and double-pendulum routes.
-- [ ] Preserve legacy double-pendulum experiment links.
-- [ ] Implement and test ideal and drag projectile models.
-- [ ] Build guided derivations, vectors, plots and range experiment.
-- [ ] Add practical uncertainty and exam-style assessment.
+- [x] Research provisional ZIMSEC Forms 5–6 curriculum and assessment requirements.
+- [x] Define the reusable orient-to-connect learning journey.
+- [x] Replace the homepage with a curriculum map.
+- [x] Add canonical projectile-motion and double-pendulum routes.
+- [x] Preserve legacy double-pendulum experiment links.
+- [x] Implement and test ideal and drag projectile models.
+- [x] Build guided derivations, vectors, plots and range experiment.
+- [x] Add practical uncertainty and exam-style assessment.
+- [x] Label examinable core, derived applications and research extensions.
 - [ ] Validate nested routes through the production container.
+
+## Complete A-Level Mechanics
+
+- [x] Research the six provisional Newtonian Mechanics headings and General Physics prerequisites.
+- [x] Specify the complete Mechanics module contract and scientific boundaries.
+- [x] Add tested pure models for every Mechanics heading.
+- [x] Build the integrated `/mechanics/` course and laboratory.
+- [x] Add practical, misconception and examination guidance to every heading.
+- [x] Connect Projectile Motion and the advanced double-pendulum extension.
+- [ ] Validate the complete Mechanics course in the production container.
 
 ## 1. Workspace foundation
 

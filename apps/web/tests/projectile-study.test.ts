@@ -5,6 +5,7 @@ import {
   decodeLaunchState,
   encodeLaunchState,
   estimateLaunchFromMeasurements,
+  evaluateRangePrediction,
   trajectoryCsv,
 } from "../src/lib/features/projectile-motion/projectile-study";
 
@@ -62,6 +63,16 @@ describe("projectile study calculations", () => {
     const state = { speed: 31, angleDegrees: 38, launchHeight: 4 };
     expect(decodeLaunchState(encodeLaunchState(state))).toEqual(state);
     expect(decodeLaunchState("not-base64")).toBeUndefined();
+  });
+
+  test("evaluates a committed range prediction without false precision", () => {
+    expect(evaluateRangePrediction(90, 93.7)).toEqual({
+      absoluteErrorMeters: 3.7,
+      percentageError: 3.9,
+      band: "close",
+    });
+    expect(evaluateRangePrediction(60, 93.7).band).toBe("reconsider");
+    expect(() => evaluateRangePrediction(-1, 20)).toThrow(RangeError);
   });
 
   test("exports model metadata and trajectory samples as CSV", () => {

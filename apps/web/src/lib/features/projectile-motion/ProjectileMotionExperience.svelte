@@ -17,9 +17,11 @@
   import ProjectilePlot from "./ProjectilePlot.svelte";
   import ProjectileStage from "./ProjectileStage.svelte";
   import RangeExperiment from "./RangeExperiment.svelte";
+  import SyllabusBriefing from "./SyllabusBriefing.svelte";
   import {
     decodeLaunchState,
     encodeLaunchState,
+    evaluateRangePrediction,
     trajectoryCsv,
   } from "./projectile-study";
 
@@ -33,6 +35,7 @@
   let playing = $state(false);
   let reducedMotion = $state(false);
   let shareStatus = $state("");
+  let predictionCommitted = $state(false);
 
   let simulation = $derived.by(() => {
     const initialState: ProjectileState = {
@@ -104,10 +107,19 @@
 
   let currentVacuum = $derived(sampleAt(simulation.vacuum, time));
   let currentDrag = $derived(sampleAt(simulation.drag, time));
+  let predictionResult = $derived(
+    predictionCommitted
+      ? evaluateRangePrediction(predictedRange, simulation.range)
+      : undefined,
+  );
 
   function restart() {
     time = 0;
     playing = false;
+  }
+
+  function updatePrediction() {
+    predictionCommitted = false;
   }
 
   function togglePlayback() {
@@ -189,11 +201,13 @@
     </p>
   </section>
 
+  <SyllabusBriefing />
+
   <section class="laboratory" aria-labelledby="lab-title">
     <div class="stage-panel">
       <header class="panel-head">
         <div>
-          <p class="eyebrow">Live model</p>
+          <p class="eyebrow">Examinable core · provisional</p>
           <h2 id="lab-title">Launch laboratory</h2>
         </div>
         <button
@@ -288,8 +302,29 @@
           max="250"
           step="1"
           bind:value={predictedRange}
+          oninput={updatePrediction}
         />
       </label>
+
+      <div class="prediction-check">
+        <button onclick={() => (predictionCommitted = true)}>
+          Commit prediction
+        </button>
+        <p aria-live="polite">
+          {#if predictionResult}
+            {predictionResult.band === "excellent"
+              ? "Excellent estimate."
+              : predictionResult.band === "close"
+                ? "Close prediction."
+                : "Reconsider the horizontal and vertical components."}
+            Error: {predictionResult.absoluteErrorMeters.toFixed(1)} m ({predictionResult.percentageError.toFixed(
+              1,
+            )}%).
+          {:else}
+            Set the marker, commit your estimate, then release the projectile.
+          {/if}
+        </p>
+      </div>
 
       <dl>
         <div>
@@ -310,8 +345,9 @@
         </div>
       </dl>
       <p class="model-note">
-        Coordinates: +x right, +y up. SI units. Amber is analytic vacuum motion;
-        teal uses fixed-step RK4 with quadratic drag.
+        Core model: +x right, +y up, SI units, uniform gravity and no air
+        resistance. The dashed teal RK4 path is a research extension, not
+        verified ZIMSEC core.
       </p>
     </aside>
   </section>
@@ -341,6 +377,55 @@
   <RangeExperiment {speed} height={launchHeight} />
   <MeasurementPractical />
   <ProjectileAssessment />
+
+  <section class="sources" id="sources" aria-labelledby="sources-title">
+    <div>
+      <p class="eyebrow">Evidence and limits</p>
+      <h2 id="sources-title">Know what is examined—and what extends it.</h2>
+    </div>
+    <div class="source-grid">
+      <article>
+        <span>Curriculum</span>
+        <h3>Provisional ZIMSEC alignment</h3>
+        <p>
+          Curriculum wording was transcribed from an accessible mirror of the
+          MoPSE Forms 5–6 Physics syllabus for 2024–2030. It awaits verification
+          against the official ZIMSEC-hosted PDF.
+        </p>
+        <a href="https://www5.zimsec.co.zw/syllabi/"
+          >Official syllabus portal ↗</a
+        >
+      </article>
+      <article>
+        <span>Core physics</span>
+        <h3>Independent perpendicular motions</h3>
+        <p>
+          The analytic vacuum model and problem-solving sequence are
+          independently supported by OpenStax Physics.
+        </p>
+        <a href="https://openstax.org/books/physics/pages/5-3-projectile-motion"
+          >OpenStax source ↗</a
+        >
+      </article>
+      <article>
+        <span>Research extension</span>
+        <h3>Quadratic drag is not the exam model</h3>
+        <p>
+          NASA's drag equation supports the comparison, while NIST informs the
+          uncertainty treatment. Neither source defines ZIMSEC examinability.
+        </p>
+        <a
+          href="https://www.grc.nasa.gov/www/k-12/VirtualAero/BottleRocket/airplane/drageq.html"
+          >NASA drag source ↗</a
+        >
+      </article>
+    </div>
+    <p class="verification-note">
+      No current official question-level mark scheme or command-word glossary
+      was accessible. Fieldlab teaches transparent working but does not claim
+      unverified ZIMSEC marking rules.
+    </p>
+  </section>
 </main>
 
 <style>
@@ -473,6 +558,23 @@
     font: 700 0.68rem var(--mono);
     text-transform: uppercase;
   }
+  .prediction-check {
+    margin: 1rem 0 1.75rem;
+    padding: 1rem;
+    border: 1px solid var(--line-strong);
+    background: var(--night);
+  }
+  .prediction-check button {
+    width: 100%;
+    border-color: var(--teal);
+  }
+  .prediction-check p {
+    min-height: 2.5rem;
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
   .controls label span {
     display: flex;
     justify-content: space-between;
@@ -521,6 +623,54 @@
     padding: 1rem;
     background: var(--night);
   }
+  .sources {
+    padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 6vw, 7rem);
+    border-top: 1px solid var(--line);
+    background: var(--night-2);
+  }
+  .sources > div:first-child {
+    max-width: 55rem;
+    margin-bottom: 2.5rem;
+  }
+  .source-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid var(--line);
+    background: var(--line);
+  }
+  .source-grid article {
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    background: var(--night);
+  }
+  .source-grid span {
+    color: var(--amber);
+    font: 800 0.62rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .source-grid h3 {
+    margin: 1.5rem 0 0.75rem;
+    font: 600 1.75rem var(--serif);
+  }
+  .source-grid p,
+  .verification-note {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .source-grid a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--teal);
+    font: 800 0.66rem var(--mono);
+    text-transform: uppercase;
+  }
+  .verification-note {
+    max-width: 52rem;
+    margin: 2rem 0 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--coral);
+  }
 
   @media (max-width: 58rem) {
     .laboratory {
@@ -531,6 +681,9 @@
       border-top: 1px solid var(--line);
     }
     .plots {
+      grid-template-columns: 1fr;
+    }
+    .source-grid {
       grid-template-columns: 1fr;
     }
   }

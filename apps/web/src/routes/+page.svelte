@@ -81,10 +81,10 @@
       <span>Current expedition</span>
       <strong>Mechanics</strong>
       <p>
-        Begin with projectile motion, then cross into the deterministic chaos of
-        Strange Loops.
+        Travel from kinematics and collisions through forces, energy, circular
+        motion and gravitational fields.
       </p>
-      <a href="/mechanics/projectile-motion/">Enter the launch lab →</a>
+      <a href="/mechanics/">Enter Mechanics →</a>
     </aside>
   </section>
 
@@ -117,8 +117,17 @@
       </p>
     </header>
     <div class="lessons">
+      <a class="lesson mechanics-core" href="/mechanics/">
+        <span>Complete strand · Ready</span>
+        <h3>A-Level Mechanics</h3>
+        <p>
+          Kinematics, dynamics, forces, momentum, energy, circular motion,
+          gravitation, practical analysis and exam preparation.
+        </p>
+        <strong>Start the full course ↗</strong>
+      </a>
       <a class="lesson primary" href="/mechanics/projectile-motion/">
-        <span>Core study · Ready</span>
+        <span>Deep core study · Ready</span>
         <h3>Beyond 45°</h3>
         <p>
           Projectile motion, vector components, air resistance, uncertainty and
@@ -127,7 +136,7 @@
         <strong>Launch study ↗</strong>
       </a>
       <a class="lesson chaos" href="/mechanics/double-pendulum/">
-        <span>Advanced study · Ready</span>
+        <span>Research extension · Ready</span>
         <h3>Strange Loops</h3>
         <p>
           Double-pendulum chaos, phase space, finite-time divergence and
@@ -136,11 +145,11 @@
         <strong>Enter chaos ↗</strong>
       </a>
       <article class="lesson upcoming">
-        <span>Next mechanics sequence</span>
-        <h3>Forces → Energy → Momentum → Circular motion → Oscillations</h3>
+        <span>Bridge to the next territory</span>
+        <h3>Oscillations → Waves</h3>
         <p>
-          These become active only after the shared lesson patterns are proven
-          by Projectile Motion.
+          Simple harmonic motion reuses force, energy and graph reasoning before
+          opening the Waves strand.
         </p>
       </article>
     </div>
@@ -338,6 +347,11 @@
         transparent 32%
       ),
       #0b1114;
+  }
+  .lesson.mechanics-core {
+    grid-column: 1 / -1;
+    min-height: 22rem;
+    background: linear-gradient(110deg, #15120c, var(--panel));
   }
   .lesson.upcoming {
     grid-column: 1 / -1;
