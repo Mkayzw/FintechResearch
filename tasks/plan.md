@@ -1,5 +1,16 @@
 # Implementation Plan: Strange Loops
 
+> Platform expansion: the approved next phase is defined in `docs/platform-spec.md`. The existing double-pendulum plan remains the historical implementation record.
+
+## Platform Phase — Mechanics foundation
+
+1. Make nested static route output canonical with trailing slashes.
+2. Replace `/` with the curriculum map and preserve legacy hash links.
+3. Route the existing experience at `/mechanics/double-pendulum/` without redesigning it.
+4. Add tested analytic and quadratic-drag projectile physics to the existing physics package.
+5. Build `/mechanics/projectile-motion/` as the first reusable core lesson.
+6. Validate direct static requests, browser interactions, tests, build and Docker.
+
 ## Overview
 
 Build the application as a Bun workspace with a framework-free physics package, a static SvelteKit frontend, and an Elysia production host/API. Work proceeds risk-first: validate equations and integration before investing in animation, then deliver a complete guided twin experiment before expanding the sandbox.

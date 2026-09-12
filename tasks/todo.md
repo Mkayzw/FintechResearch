@@ -1,5 +1,15 @@
 # Task Checklist
 
+## Platform expansion
+
+- [ ] Replace the homepage with a curriculum map.
+- [ ] Add canonical projectile-motion and double-pendulum routes.
+- [ ] Preserve legacy double-pendulum experiment links.
+- [ ] Implement and test ideal and drag projectile models.
+- [ ] Build guided derivations, vectors, plots and range experiment.
+- [ ] Add practical uncertainty and exam-style assessment.
+- [ ] Validate nested routes through the production container.
+
 ## 1. Workspace foundation
 
 - [ ] Create root Bun workspace and strict TypeScript configuration.

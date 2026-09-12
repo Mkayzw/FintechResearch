@@ -1,13 +1,13 @@
-# Strange Loops
+# Fieldlab Physics
 
-A literature-grounded, interactive study of deterministic chaos in the ideal double pendulum. It combines a guided undergraduate narrative with a configurable Chaos Lab.
+An interactive Zimbabwe A-Level Physics platform. Mechanics begins with Projectile Motion and the advanced Strange Loops double-pendulum study.
 
 ## Stack
 
 - SvelteKit/Svelte 5 frontend
 - Framework-free TypeScript physics engine in a Web Worker
 - ElysiaJS/Bun API and production static host
-- One multi-stage Docker image
+- Docker Compose deployment backed by one multi-stage image
 
 ## Run locally
 
@@ -24,8 +24,15 @@ A literature-grounded, interactive study of deterministic chaos in the ideal dou
 
 ## Production
 
-- Build: `docker build -t strange-loops .`
-- Run: `docker run --rm -p 3000:3000 strange-loops`
-- Open `http://localhost:3000`
+- Build and start: `docker compose up --build -d`
+- Check status: `docker compose ps`
+- Follow logs: `docker compose logs -f fieldlab`
+- Restart: `docker compose restart fieldlab`
+- Stop and remove: `docker compose down`
+- Open `http://localhost:3010`
 
-See `docs/spec.md` for scope and `docs/research.md` for derivation and bibliography.
+Fieldlab reserves host port **3010** by default because port 3000 is already used by Metabase on this machine. To override it, for example: `FIELDLAB_PORT=3020 docker compose up --build -d`.
+
+The Compose service is `fieldlab` and its stable container name is `fieldlab-physics`. `docker restart strange-loops` fails because no container with that name is created by this configuration. The previous `docker run --rm ...` workflow also removed the container when it stopped.
+
+See `docs/platform-spec.md` for platform scope, `docs/spec.md` for Strange Loops, and `docs/research.md` for its derivation and bibliography.

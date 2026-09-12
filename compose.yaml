@@ -1,0 +1,20 @@
+services:
+  fieldlab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fieldlab-physics:local
+    container_name: fieldlab-physics
+    ports:
+      - "${FIELDLAB_PORT:-3010}:3000"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - bun
+        - -e
+        - "const r=await fetch('http://localhost:3000/healthz');if(!r.ok)process.exit(1)"
+      interval: 30s
+      timeout: 3s
+      start_period: 5s
+      retries: 3

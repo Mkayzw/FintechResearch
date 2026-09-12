@@ -27,4 +27,15 @@ describe("study API", () => {
     expect(body.length).toBeGreaterThanOrEqual(2);
     expect(body[0].parameters.gravity).toBe(9.81);
   });
+
+  test("serves the canonical projectile laboratory route directly", async () => {
+    const response = await app.handle(
+      new Request("http://localhost/mechanics/projectile-motion/"),
+    );
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/html");
+    expect(html).toContain("Beyond 45°");
+  });
 });

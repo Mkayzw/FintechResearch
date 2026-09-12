@@ -170,7 +170,10 @@
   }
 
   async function share() {
-    const payload = btoa(JSON.stringify({ v: 1, selectedPreset, experiment }));
+    const payload = btoa(JSON.stringify({ v: 1, selectedPreset, experiment }))
+      .replaceAll("+", "-")
+      .replaceAll("/", "_")
+      .replace(/=+$/, "");
     location.hash = `experiment=${payload}`;
     await navigator.clipboard?.writeText(location.href);
   }
@@ -183,7 +186,10 @@
         "experiment",
       );
       if (!value) return undefined;
-      const parsed = JSON.parse(atob(value)) as {
+      const legacySafe = value.replaceAll(" ", "+");
+      const base64 = legacySafe.replaceAll("-", "+").replaceAll("_", "/");
+      const padded = base64.padEnd(Math.ceil(base64.length / 4) * 4, "=");
+      const parsed = JSON.parse(atob(padded)) as {
         v?: unknown;
         selectedPreset?: unknown;
         experiment?: Partial<ExperimentDefinition>;
@@ -254,7 +260,7 @@
 
 <section class="hero" id="story">
   <nav aria-label="Primary navigation">
-    <a class="brand" href="#story">STRANGE/LOOPS</a>
+    <a class="brand" href="/">FIELDLAB/PHYSICS</a>
     <div>
       <a href="#story">The study</a><a href="#lab">Chaos Lab</a><a
         href="#sources">Sources</a

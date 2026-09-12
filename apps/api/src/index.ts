@@ -29,6 +29,13 @@ const presetSchema = t.Object({
   timeStep: t.Number(),
 });
 
+const staticFiles = await staticPlugin({
+  assets: new URL("../../web/build", import.meta.url).pathname,
+  prefix: "/",
+  alwaysStatic: true,
+  indexHTML: true,
+});
+
 export const app = new Elysia()
   .get("/healthz", () => ({ status: "ok" as const }), {
     response: t.Object({ status: t.Literal("ok") }),
@@ -49,14 +56,7 @@ export const app = new Elysia()
   .get("/api/v1/presets", () => presets, {
     response: t.Array(presetSchema),
   })
-  .use(
-    staticPlugin({
-      assets: new URL("../../web/build", import.meta.url).pathname,
-      prefix: "/",
-      alwaysStatic: true,
-      indexHTML: true,
-    }),
-  );
+  .use(staticFiles);
 
 if (import.meta.main) {
   app.listen(Number(Bun.env.PORT ?? 3000));
