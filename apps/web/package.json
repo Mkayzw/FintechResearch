@@ -1,0 +1,27 @@
+{
+  "name": "@strange-loops/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "@strange-loops/contracts": "workspace:*",
+    "@strange-loops/physics": "workspace:*",
+    "katex": "0.16.22"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "3.0.10",
+    "@sveltejs/kit": "2.70.3",
+    "@sveltejs/vite-plugin-svelte": "7.0.0",
+    "@types/katex": "0.16.8",
+    "svelte": "5.57.0",
+    "svelte-check": "4.3.3",
+    "typescript": "6.0.3",
+    "vite": "8.3.0"
+  }
+}

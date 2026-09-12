@@ -1,0 +1,25 @@
+{
+  "name": "strange-loops",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --filter '*' dev",
+    "dev:web": "bun --filter @strange-loops/web dev",
+    "dev:api": "bun --filter @strange-loops/api dev",
+    "test": "bun test",
+    "check": "bun --filter '*' check",
+    "build": "bun --filter @strange-loops/web build && bun --filter @strange-loops/api build",
+    "start": "bun apps/api/src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "bun": ">=1.3.14"
+  }
+}

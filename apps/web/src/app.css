@@ -1,0 +1,34 @@
+@import 'katex/dist/katex.min.css';
+
+:root {
+  --night: #090b0f;
+  --night-2: #101419;
+  --panel: #0d1115;
+  --ink: #f0ede5;
+  --muted: #8e9a97;
+  --amber: #f4b84a;
+  --teal: #71d7c7;
+  --coral: #f27c61;
+  --line: #252d31;
+  --line-strong: #3b474b;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --sans: Inter, 'Segoe UI', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  color-scheme: dark;
+  font-family: var(--sans);
+  background: var(--night);
+  color: var(--ink);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--night); }
+body { margin: 0; min-width: 320px; background: var(--night); }
+button, input, select { font: inherit; }
+a { color: inherit; }
+::selection { background: var(--amber); color: var(--night); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
