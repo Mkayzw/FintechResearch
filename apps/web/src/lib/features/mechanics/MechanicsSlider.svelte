@@ -27,7 +27,7 @@
     gap: 0.6rem;
     margin: 0 0 1.35rem;
     color: var(--muted);
-    font: 700 0.65rem var(--mono);
+    font: 700 0.75rem var(--mono);
     text-transform: uppercase;
   }
   span {
@@ -40,7 +40,9 @@
   }
   input {
     width: 100%;
+    min-height: 2.75rem;
     accent-color: var(--amber);
+    cursor: pointer;
   }
   input:focus-visible {
     outline: 2px solid var(--amber);

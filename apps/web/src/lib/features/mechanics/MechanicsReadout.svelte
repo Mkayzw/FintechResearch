@@ -14,12 +14,13 @@
   }
   span {
     color: var(--muted);
-    font: 700 0.62rem var(--mono);
+    font: 700 0.72rem var(--mono);
     text-transform: uppercase;
   }
   strong {
     color: var(--teal);
-    font: 700 0.72rem var(--mono);
+    font: 700 0.78rem var(--mono);
     text-align: right;
+    font-variant-numeric: tabular-nums;
   }
 </style>

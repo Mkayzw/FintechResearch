@@ -8,6 +8,7 @@
     springEnergy,
     workEnergy,
   } from "@strange-loops/physics";
+  import MechanicsDiagram from "./MechanicsDiagram.svelte";
   import MechanicsReadout from "./MechanicsReadout.svelte";
   import MechanicsSlider from "./MechanicsSlider.svelte";
   import type { MechanicsModuleId } from "./mechanics-content";
@@ -57,7 +58,7 @@
     momentOfForce({
       forceNewtons: force,
       perpendicularDistanceMeters: distance,
-      direction: "anticlockwise",
+      direction: "clockwise",
     }),
   );
   let elastic = $derived(springEnergy(springConstant, extension));
@@ -84,20 +85,39 @@
 </script>
 
 <section class="lab" aria-label="Interactive Mechanics laboratory">
-  {#if active === "kinematics"}
-    <div class="visual motion" aria-label="Rectilinear motion diagram">
-      <div class="track"></div>
-      <div
-        class="cart"
-        style={`left: ${Math.min(88, 8 + kinematics.displacementMeters)}%`}
-      >
-        <span>v = {kinematics.velocityMetersPerSecond.toFixed(1)} m/s</span>
+  <div class="experiment-stage">
+    <header>
+      <div>
+        <span>Live apparatus</span><strong
+          >Change one variable. Read every consequence.</strong
+        >
       </div>
-      <div class="axis">
-        0 m <span>{kinematics.displacementMeters.toFixed(1)} m</span>
-      </div>
-    </div>
-    <div class="controls">
+      <small>Amber: state · Teal: result · Coral: applied/loss</small>
+    </header>
+    <MechanicsDiagram
+      {active}
+      {kinematics}
+      initialVelocity={kinematicsU}
+      acceleration={kinematicsA}
+      {collision}
+      {collisionVelocity}
+      mass1={collisionMass1}
+      mass2={collisionMass2}
+      {force}
+      {distance}
+      {springConstant}
+      {extension}
+      {energy}
+      {netWork}
+      {circular}
+      {radius}
+      {circularSpeed}
+      {orbit}
+      {altitudeKilometers}
+    />
+  </div>
+  <div class="controls">
+    {#if active === "kinematics"}
       <MechanicsSlider
         label="Initial velocity"
         unit="m/s"
@@ -130,35 +150,7 @@
         label="Final velocity"
         value={`${kinematics.velocityMetersPerSecond.toFixed(2)} m/s`}
       />
-    </div>
-  {:else if active === "dynamics"}
-    <div
-      class="visual collision"
-      aria-label="One-dimensional collision diagram"
-    >
-      <div class="momentum before">
-        <span>Before</span>
-        <i
-          style={`width:${Math.abs(collisionVelocity) * collisionMass1 * 10}px`}
-        ></i>
-        <b
-          >{collision.momentumBeforeKilogramMetersPerSecond.toFixed(2)} kg m/s</b
-        >
-      </div>
-      <div class="carts">
-        <div class="cart-one">m₁</div>
-        <div class="cart-two">m₂</div>
-      </div>
-      <div class="momentum after">
-        <span>After</span>
-        <i
-          style={`width:${Math.abs(collision.momentumAfterKilogramMetersPerSecond) * 10}px`}
-        ></i>
-        <b>{collision.momentumAfterKilogramMetersPerSecond.toFixed(2)} kg m/s</b
-        >
-      </div>
-    </div>
-    <div class="controls">
+    {:else if active === "dynamics"}
       <MechanicsSlider
         label="Moving mass"
         unit="kg"
@@ -199,22 +191,7 @@
         label="Kinetic-energy change"
         value={`${collision.kineticEnergyChangeJoules.toFixed(2)} J`}
       />
-    </div>
-  {:else if active === "forces"}
-    <div class="visual beam" aria-label="Moment and spring diagram">
-      <div class="pivot">▲</div>
-      <div class="beam-line"></div>
-      <div
-        class="force-arrow"
-        style={`right:${Math.max(5, 50 - distance * 30)}%`}
-      >
-        ↓ {force.toFixed(0)} N
-      </div>
-      <div class="spring" style={`height:${60 + extension * 180}px`}>
-        /\/\/\/\
-      </div>
-    </div>
-    <div class="controls">
+    {:else if active === "forces"}
       <MechanicsSlider
         label="Force"
         unit="N"
@@ -248,33 +225,14 @@
         bind:value={extension}
       />
       <MechanicsReadout
-        label="Anticlockwise moment"
-        value={`${moment.toFixed(2)} N m`}
+        label="Moment"
+        value={`${Math.abs(moment).toFixed(2)} N m clockwise`}
       />
       <MechanicsReadout
         label="Elastic energy"
         value={`${elastic.toFixed(2)} J`}
       />
-    </div>
-  {:else if active === "energy"}
-    <div class="visual energy-bars" aria-label="Work-energy accounting diagram">
-      <div>
-        <span>Initial kinetic</span><i
-          style={`height:${Math.min(90, energy.initialKineticEnergyJoules * 2)}%`}
-        ></i>
-      </div>
-      <div>
-        <span>Net work</span><i
-          style={`height:${Math.min(90, Math.max(2, netWork * 2))}%`}
-        ></i>
-      </div>
-      <div>
-        <span>Final kinetic</span><i
-          style={`height:${Math.min(90, energy.finalKineticEnergyJoules * 2)}%`}
-        ></i>
-      </div>
-    </div>
-    <div class="controls">
+    {:else if active === "energy"}
       <MechanicsSlider
         label="Mass"
         unit="kg"
@@ -307,15 +265,7 @@
         label="Final kinetic energy"
         value={`${energy.finalKineticEnergyJoules.toFixed(2)} J`}
       />
-    </div>
-  {:else if active === "circular"}
-    <div class="visual orbit-local" aria-label="Circular motion vector diagram">
-      <div class="circle"></div>
-      <div class="body">m</div>
-      <div class="velocity-arrow">v ↑</div>
-      <div class="radial-arrow">← ΣFᵣ</div>
-    </div>
-    <div class="controls">
+    {:else if active === "circular"}
       <MechanicsSlider
         label="Mass"
         unit="kg"
@@ -354,18 +304,7 @@
           ? `${circular.periodSeconds.toFixed(2)} s`
           : "Stationary"}
       />
-    </div>
-  {:else}
-    <div class="visual earth-orbit" aria-label="Circular Earth orbit diagram">
-      <div class="earth">Earth</div>
-      <div
-        class="orbit-ring"
-        style={`inset:${Math.max(10, 34 - altitudeKilometers / 100)}px`}
-      ></div>
-      <div class="satellite">●</div>
-      <span>r = Rₑ + altitude</span>
-    </div>
-    <div class="controls">
+    {:else}
       <MechanicsSlider
         label="Altitude"
         unit="km"
@@ -390,8 +329,8 @@
         label="Potential"
         value={`${(orbit.potentialJoulesPerKilogram / 1e6).toFixed(2)} MJ/kg`}
       />
-    </div>
-  {/if}
+    {/if}
+  </div>
 </section>
 
 <style>
@@ -401,239 +340,40 @@
   }
   .lab {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+    grid-template-columns: minmax(0, 1.45fr) minmax(20rem, 0.55fr);
     border: 1px solid var(--line);
   }
-  .visual {
-    min-height: 31rem;
-    position: relative;
-    overflow: hidden;
-    background: radial-gradient(
-        circle at 50% 50%,
-        rgba(113, 215, 199, 0.11),
-        transparent 45%
-      ),
-      #090d11;
+  .experiment-stage > header {
+    min-height: 4.75rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--night-2);
+  }
+  .experiment-stage header div {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .experiment-stage header span,
+  .experiment-stage header small {
+    color: var(--muted);
+    font: 700 0.72rem var(--mono);
+    text-transform: uppercase;
+  }
+  .experiment-stage header strong {
+    font: 600 1rem var(--serif);
+  }
+  .experiment-stage header small {
+    text-align: right;
+    line-height: 1.4;
   }
   .controls {
     padding: clamp(1.25rem, 3vw, 2.5rem);
     border-left: 1px solid var(--line);
     background: var(--panel);
-  }
-  .motion .track {
-    position: absolute;
-    left: 8%;
-    right: 8%;
-    top: 55%;
-    height: 2px;
-    background: var(--line-strong);
-  }
-  .motion .cart {
-    position: absolute;
-    top: calc(55% - 2.7rem);
-    width: 5rem;
-    height: 2.7rem;
-    transform: translateX(-50%);
-    background: var(--amber);
-    color: var(--night);
-    transition: left 0.2s;
-  }
-  .motion .cart span {
-    position: absolute;
-    width: 11rem;
-    top: -2rem;
-    left: -3rem;
-    color: var(--ink);
-    font: 700 0.68rem var(--mono);
-  }
-  .motion .axis {
-    position: absolute;
-    left: 8%;
-    right: 8%;
-    top: 58%;
-    display: flex;
-    justify-content: space-between;
-    color: var(--muted);
-    font: 600 0.65rem var(--mono);
-  }
-  .collision {
-    display: grid;
-    place-content: center;
-    gap: 3rem;
-    padding: 2rem;
-  }
-  .carts {
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    gap: 0.25rem;
-    border-bottom: 2px solid var(--line-strong);
-  }
-  .cart-one,
-  .cart-two {
-    display: grid;
-    place-items: center;
-    color: var(--night);
-    font: 800 1rem var(--mono);
-  }
-  .cart-one {
-    width: 8rem;
-    height: 5rem;
-    background: var(--amber);
-  }
-  .cart-two {
-    width: 5rem;
-    height: 3.5rem;
-    background: var(--teal);
-  }
-  .momentum {
-    display: grid;
-    grid-template-columns: 4rem 1fr auto;
-    align-items: center;
-    gap: 1rem;
-    color: var(--muted);
-    font: 700 0.65rem var(--mono);
-    text-transform: uppercase;
-  }
-  .momentum i {
-    display: block;
-    height: 3px;
-    max-width: 15rem;
-    background: var(--coral);
-  }
-  .momentum b {
-    color: var(--ink);
-  }
-  .beam .beam-line {
-    position: absolute;
-    left: 15%;
-    right: 15%;
-    top: 46%;
-    height: 0.8rem;
-    background: var(--amber);
-  }
-  .beam .pivot {
-    position: absolute;
-    left: 14%;
-    top: 48%;
-    color: var(--teal);
-    font-size: 3rem;
-  }
-  .force-arrow {
-    position: absolute;
-    top: 30%;
-    color: var(--coral);
-    font: 800 0.8rem var(--mono);
-  }
-  .spring {
-    position: absolute;
-    right: 15%;
-    top: 55%;
-    width: 4rem;
-    color: var(--teal);
-    font: 800 1.3rem/1.1 var(--mono);
-    writing-mode: vertical-rl;
-    overflow: hidden;
-  }
-  .energy-bars {
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    gap: clamp(1rem, 5vw, 4rem);
-    padding: 4rem 2rem;
-  }
-  .energy-bars div {
-    height: 22rem;
-    width: min(8rem, 25%);
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    gap: 0.75rem;
-  }
-  .energy-bars span {
-    min-height: 2rem;
-    color: var(--muted);
-    font: 700 0.62rem var(--mono);
-    text-transform: uppercase;
-  }
-  .energy-bars i {
-    display: block;
-    min-height: 0.3rem;
-    background: linear-gradient(var(--amber), var(--coral));
-    transition: height 0.2s;
-  }
-  .orbit-local .circle {
-    position: absolute;
-    width: 18rem;
-    height: 18rem;
-    border: 1px solid var(--line-strong);
-    border-radius: 50%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .orbit-local .body {
-    position: absolute;
-    left: calc(50% + 8rem);
-    top: calc(50% - 1rem);
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: var(--amber);
-    color: var(--night);
-  }
-  .velocity-arrow {
-    position: absolute;
-    left: calc(50% + 10.7rem);
-    top: calc(50% - 4rem);
-    color: var(--amber);
-    font: 800 0.8rem var(--mono);
-  }
-  .radial-arrow {
-    position: absolute;
-    left: calc(50% + 2rem);
-    top: calc(50% + 1.5rem);
-    color: var(--teal);
-    font: 800 0.8rem var(--mono);
-  }
-  .earth-orbit {
-    display: grid;
-    place-items: center;
-  }
-  .earth {
-    width: 9rem;
-    height: 9rem;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: radial-gradient(
-      circle at 30% 25%,
-      var(--teal),
-      #183a47 55%,
-      #071317
-    );
-    font: 800 0.7rem var(--mono);
-    text-transform: uppercase;
-  }
-  .orbit-ring {
-    position: absolute;
-    border: 1px dashed var(--amber);
-    border-radius: 50%;
-  }
-  .satellite {
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    color: var(--amber);
-    font-size: 2rem;
-  }
-  .earth-orbit > span {
-    position: absolute;
-    bottom: 2rem;
-    color: var(--muted);
-    font: 700 0.65rem var(--mono);
   }
   @media (max-width: 58rem) {
     .lab {
@@ -643,41 +383,20 @@
       border-left: 0;
       border-top: 1px solid var(--line);
     }
-    .visual {
-      min-height: 24rem;
+    .experiment-stage header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .experiment-stage header small {
+      text-align: left;
     }
   }
   @media (max-width: 34rem) {
-    .visual {
-      min-height: 19rem;
-    }
-    .collision {
+    .controls {
       padding: 1rem;
     }
-    .momentum {
-      grid-template-columns: 3rem 1fr;
-    }
-    .momentum b {
-      grid-column: 2;
-    }
-    .energy-bars {
-      padding: 2rem 1rem;
-    }
-    .energy-bars div {
-      height: 15rem;
-    }
-    .orbit-local .circle {
-      width: 13rem;
-      height: 13rem;
-    }
-    .orbit-local .body {
-      left: calc(50% + 5.5rem);
-    }
-    .velocity-arrow {
-      left: calc(50% + 4rem);
-    }
-    .radial-arrow {
-      left: calc(50% - 1rem);
+    .experiment-stage header strong {
+      font-size: 0.92rem;
     }
   }
 </style>
