@@ -1,0 +1,10 @@
+services:
+  fieldlab:
+    command: bun run build && bun run start
+    health: /healthz
+    portal:
+      title: Fieldlab Physics
+      description: Production preview. Restart this service after source changes to rebuild it.
+    portals:
+      - url: /mechanics/
+        title: Mechanics

@@ -22,6 +22,33 @@ An interactive Zimbabwe A-Level Physics platform. Mechanics begins with Projecti
 - Type/Svelte checks: `bun run check`
 - Production build: `bun run build`
 
+## Amp orbs
+
+Executable `.agents/setup` prepares fresh orbs with Bun **1.3.14**, matching the
+Dockerfile, workspace dependencies, SvelteKit generated files and a production
+build. The build is needed by the API's static-route tests. It copies `.env.example`
+only when `.env` is absent; the app needs no database or secrets for local work.
+Node.js comes from the orb base image.
+
+Amp snapshots the prepared toolchain, dependencies and caches. Matching snapshots
+skip setup; when setup runs again, Bun cheaply checks the restored dependencies
+instead of forcing a reinstall. This repository ignores `bun.lock`, so setup uses
+`bun install`, not `--frozen-lockfile`. The pinned Bun binary is available to new
+login shells and supervised services in this checkout. No `.agents/resume` is
+needed: there is no runtime authentication or connection to repair, and dependency
+installation belongs only in setup.
+
+Run `amp orb services ensure` to start the declared Fieldlab production preview
+and print its authenticated portal links. The service builds before listening on
+Amp's assigned `PORT` and checks `/healthz`. After editing source, run
+`amp orb service restart fieldlab` to rebuild the preview. For hot-reload work, use
+the local development commands above with a supervised orb service. Setup never
+starts a server, and generated `.amp/portals/` files are ignored.
+
+These files must reach the Amp project's default branch before they configure
+future orbs. Local checks: `bash -n .agents/setup`, run `.agents/setup` twice, then
+`bun test` and `bun run check`.
+
 ## Production
 
 - Build and start: `docker compose up --build -d`
