@@ -19,7 +19,7 @@
     <p class="eyebrow">Zimbabwe Forms 5–6 · Research-led study</p>
     <h1>{data.area.title}</h1>
     <p class="lede">Chapter {index + 1} of {data.area.chapters.length} · Reason → Solve → Investigate</p>
-    <p class="scope">Provisional alignment—not official past papers or verified exhaustive syllabus coverage. <a href={`/studies/${data.area.id}/`}>Prerequisites and evidence →</a></p>
+    <p class="scope">Provisional alignment: interactive models and authored workshops, with source-labelled examination answers in selected chapters. Current syllabus coverage is not verified exhaustive. <a href={`/studies/${data.area.id}/`}>Prerequisites and evidence →</a></p>
   </header>
   <nav class="chapters" aria-label="Choose a chapter">
     {#each data.area.chapters as chapter, i}

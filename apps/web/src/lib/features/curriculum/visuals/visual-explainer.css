@@ -1,0 +1,22 @@
+.visual-explainer { margin-bottom: 2.5rem; min-width: 0; }
+.visual-explainer .scene-kicker { color: var(--teal); font: 700 .7rem/1.6 var(--mono); text-transform: uppercase; letter-spacing: .09em; }
+.visual-explainer .scene-title { margin: .7rem 0 1.5rem; color: var(--ink); font: 500 clamp(1.6rem,3vw,2.3rem)/1.2 var(--serif); }
+.visual-explainer .scene-layout { display:grid; grid-template-columns: minmax(0,2fr) minmax(15rem,1fr); gap: 1.6rem; align-items:start; }
+.visual-explainer .scene-drawing { min-width:0; overflow:auto; border:1px solid var(--line-strong); background:#101b1c; }
+.visual-explainer .scene-drawing svg { display:block; width:100%; min-width: 34rem; height:auto; }
+.visual-explainer .scene-drawing svg text { fill:#cbd6d0; font: 14px var(--mono); }
+.visual-explainer .scene-drawing svg .scene-big { font-size:22px; fill:#f0dfb6; }
+.visual-explainer .scene-drawing svg .scene-teal { fill:#72c9b5; }
+.visual-explainer .scene-drawing svg .scene-amber { fill:#e5b66a; }
+.visual-explainer .scene-drawing svg .wire { fill:none; stroke:#9aaea7; stroke-width:2; stroke-linejoin:round; }
+.visual-explainer .scene-controls { min-width:0; display:grid; gap:1rem; }
+.visual-explainer .scene-controls label { display:grid; gap:.6rem; color:var(--ink); font:500 .8rem/1.6 var(--mono); }
+.visual-explainer .scene-controls input[type="range"] { width:100%; accent-color:var(--teal); margin:0; min-height:1.5rem; }
+.visual-explainer .scene-controls .scene-toggle { display:flex; align-items:center; gap:.6rem; }
+.visual-explainer .scene-controls input[type="checkbox"] { accent-color:var(--teal); width:1.1rem; height:1.1rem; }
+.visual-explainer .scene-controls p { margin:0; color:var(--muted); font-size:.85rem; line-height:1.8; }
+.visual-explainer .scene-result { border-left:2px solid var(--teal); padding-left:1rem; color:var(--ink) !important; }
+.visual-explainer .scene-assumption { color:var(--muted); font-size:.75rem; line-height:1.8; margin:1rem 0 0; }
+.visual-explainer .scene-drawing:focus-visible, .visual-explainer .scene-controls input:focus-visible { outline:2px solid var(--amber); outline-offset:4px; }
+@media(max-width:65rem) { .visual-explainer .scene-layout { grid-template-columns:1fr; } .visual-explainer .scene-controls { grid-template-columns:repeat(2,minmax(0,1fr)); } .visual-explainer .scene-controls p { grid-column:1 / -1; } }
+@media(max-width:35rem) { .visual-explainer .scene-controls { grid-template-columns:1fr; } }

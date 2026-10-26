@@ -2,10 +2,14 @@
   import { untrack } from "svelte";
   import Equation from "$lib/components/Equation.svelte";
   import NumericalAnswer from "../features/mechanics/NumericalAnswer.svelte";
+  import VisualExplainer from "../features/curriculum/visuals/VisualExplainer.svelte";
+  import ExaminationAnswers from "./ExaminationAnswers.svelte";
+  import { examinationStudies } from "../features/curriculum/examination";
   import { evaluateDepthLine, type DepthChapter } from "./depth";
 
   let { chapter, comparison }: { chapter: DepthChapter; comparison?: { caption: string; columns: string[]; rows: string[][]; takeaway: string } } = $props();
-  let mode = $state<"reason" | "solve" | "investigate">("reason");
+  let mode = $state<"reason" | "solve" | "investigate" | "exam">("reason");
+  let examStudies = $derived(examinationStudies.filter(study => study.chapters.includes(chapter.id)));
   let prediction = $state(-1);
   let predictionChecked = $state(false);
   let selectedProblem = $state(0);
@@ -35,11 +39,15 @@
       <button class:active={mode === "reason"} aria-pressed={mode === "reason"} onclick={() => mode = "reason"}>01 · Reason</button>
       <button class:active={mode === "solve"} aria-pressed={mode === "solve"} onclick={() => mode = "solve"}>02 · Solve & transfer</button>
       <button class:active={mode === "investigate"} aria-pressed={mode === "investigate"} onclick={() => mode = "investigate"}>03 · Investigate</button>
+      {#if examStudies.length}<button class:active={mode === "exam"} aria-pressed={mode === "exam"} onclick={() => mode = "exam"}>04 · Examination answers</button>{/if}
     </nav>
   </header>
 
   <div class="workshop-body">
-    {#if mode === "reason"}
+    {#if mode === "exam"}
+      <ExaminationAnswers studies={examStudies} chapterId={chapter.id} />
+    {:else if mode === "reason"}
+      <VisualExplainer chapterId={chapter.id} />
       <article>
         <p class="eyebrow">Predict · Choose the system and defend the model</p>
         <h4>Make the argument before the calculation.</h4>
@@ -143,7 +151,7 @@
       </article>
     {/if}
     <p class="session-note">Answers reset when leaving a section, changing problems or selecting another chapter. Nothing is saved or sent to a server. Numerical feedback does not assess written reasoning or establish mastery.</p>
-    <aside class="sources"><p>Science references—not proof of current examinability. All exercises and training datasets are independently authored; ZIMSEC alignment remains provisional.</p>{#each chapter.sources as source}<a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a>{/each}</aside>
+    <aside class="sources"><p>Science references—not proof of current examinability. Solve & transfer exercises and investigation datasets are independently authored. Examination answers identify their own paper or examiner-report evidence separately; current syllabus alignment remains provisional.</p>{#each chapter.sources as source}<a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a>{/each}</aside>
   </div>
 </section>
 
