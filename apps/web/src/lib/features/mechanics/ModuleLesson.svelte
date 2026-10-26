@@ -1,6 +1,9 @@
 <script lang="ts">
   import Equation from "$lib/components/Equation.svelte";
   import MechanicsLab from "./MechanicsLab.svelte";
+  import KinematicsWorkshop from "./KinematicsWorkshop.svelte";
+  import DepthWorkshop from "$lib/components/DepthWorkshop.svelte";
+  import { depthChapters, depthEvidence } from "./mechanics-depth";
   import type { MechanicsModule } from "./mechanics-content";
 
   let {
@@ -22,6 +25,7 @@
       <p class="eyebrow">Core heading {module.number} · Provisional</p>
       <h2 id="module-title" tabindex="-1">{module.title}</h2>
       <p class="thesis">{module.thesis}</p>
+      <a class="depth-link" href={`#${active}-depth`}>Go deeper: reason, solve and investigate ↓</a>
     </div>
     <div class="brief">
       <span>Syllabus target</span>
@@ -75,6 +79,14 @@
       {/each}
     </ol>
   </section>
+
+  {#key active}
+    {#if active === "kinematics"}
+      <KinematicsWorkshop />
+    {:else}
+      <DepthWorkshop chapter={depthChapters[active]} comparison={depthEvidence(active)} />
+    {/if}
+  {/key}
 
   <div class="study-spread">
     <article class="worked">
@@ -177,6 +189,16 @@
 <style>
   .lesson {
     min-width: 0;
+  }
+  .depth-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--teal);
+    font: 700 0.75rem/1.6 var(--mono);
+  }
+  .depth-link:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 4px;
   }
   .eyebrow,
   .lesson article > span,

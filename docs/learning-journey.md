@@ -14,7 +14,7 @@ Each Fieldlab module turns one ZIMSEC Physics syllabus area into a complete lear
 6. **Apply** — work through scaffolded calculations, then remove scaffolding.
 7. **Investigate** — plan or conduct a practical with variables, repeat readings, uncertainty, graphing and evaluation.
 8. **Practise** — train the distinct demands of multiple-choice, structured, free-response and practical questions.
-9. **Review** — expose misconceptions, annotate where marks are earned and prompt correction.
+9. **Review** — expose misconceptions, identify valid method and interpretation, and prompt correction without inventing official mark allocations.
 10. **Extend** — critique the core model through a clearly labelled research extension.
 11. **Connect** — state what prior knowledge was used and identify the next curriculum destination.
 
@@ -66,3 +66,40 @@ Each core module should eventually contain:
 - A learner can design a repeatable investigation and report uncertainty honestly.
 - A learner encounters all four provisional public-examination modes in the module.
 - Keyboard and reduced-motion users can complete the same conceptual journey.
+
+## Depth gate and delivery order
+
+The priority is depth across the existing Mechanics map, not more territory
+cards. Kinematics establishes the standard: a conceptual prediction, derivations
+with their limits, linked problems with diagnostic repair, a changed-condition
+transfer task, and practical evidence with uncertainty and evaluation. A heading
+is not developed merely because its calculator works.
+
+That standard now extends to Dynamics, Forces, Work/Energy/Power, Circular Motion
+and Gravitational Field: 25 new derivation stages, 15 linked problems and five
+synthetic investigations. Continue reviewing system boundaries, signs, units,
+alternative interpretations and numerical answers independently. Exercise both
+accepted and rejected practical models and keyboard/narrow-layout paths before delivery.
+Keep calculated evidence, synthetic training readings and real measurements
+explicitly distinct; fitting within stipulated bounds is not proof of a law.
+
+The [cross-curriculum research](beyond-mechanics-research.md) now tracks General
+Physics and Modern Physics explicitly as well as every planned territory. It
+replaces the previous editorial sequence, which deferred electrical prerequisites
+until after Electronics and omitted Modern Physics. Develop Waves with explicit
+measurement/uncertainty foundations; then circuits, fields and capacitance before
+electronics; Matter; magnetic/induction and Modern Physics; and Communication.
+This is a dependency-aware product plan, not an official school timetable.
+
+Develop each coherent chapter through the full cycle, rather than opening every
+territory as a shallow stub. For Waves, begin with oscillation/superposition
+reasoning, phase and boundary conditions, then standing-wave measurements and
+transfer problems—not disconnected wave sliders. The research briefs contain
+derivation chains, worked numerical anchors, misconceptions and safe practical
+designs; all 27 proposed non-Mechanics chapters now implement that learning cycle
+at `/studies/{area}/{chapter}/`. They contain 113 derivation stages, 54 multipart
+problems with worked transfers and 27 synthetic investigations. The seven area
+overviews state prerequisites and evidence boundaries; nothing implies saved
+progress or automatically graded explanations. Full current official
+syllabus/specimen-paper verification and resolution of the assessment-weight
+conflict remain necessary before claiming exhaustive Zimbabwe syllabus coverage.

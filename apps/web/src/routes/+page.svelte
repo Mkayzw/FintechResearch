@@ -1,51 +1,17 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { studyAreas } from "$lib/features/curriculum/areas";
 
   const areas = [
     {
       index: "01",
       name: "Mechanics",
-      status: "Active",
-      description:
-        "Motion, forces, energy, oscillations and nonlinear systems.",
+      description: "Motion, forces, momentum, energy and gravitation.",
       tone: "amber",
+      href: "/mechanics/",
     },
-    {
-      index: "02",
-      name: "Waves",
-      status: "Planned",
-      description: "Superposition, standing waves, diffraction and sound.",
-      tone: "teal",
-    },
-    {
-      index: "03",
-      name: "Matter",
-      status: "Planned",
-      description: "Thermal physics, deformation and the structure of matter.",
-      tone: "coral",
-    },
-    {
-      index: "04",
-      name: "Electronics",
-      status: "Planned",
-      description: "Semiconductors, logic, sensing and control.",
-      tone: "amber",
-    },
-    {
-      index: "05",
-      name: "Telecommunications",
-      status: "Planned",
-      description: "Signals, modulation, transmission and information.",
-      tone: "teal",
-    },
-    {
-      index: "06",
-      name: "Electricity + Magnetism",
-      status: "Planned",
-      description: "Fields, circuits, induction and electromagnetic force.",
-      tone: "coral",
-    },
-  ] as const;
+    ...studyAreas.map((area, index) => ({ index: String(index + 2).padStart(2, "0"), name: area.title, description: area.description, tone: area.tone, href: `/studies/${area.id}/` })),
+  ];
 
   onMount(() => {
     if (location.hash.startsWith("#experiment=")) {
@@ -64,7 +30,7 @@
 
 <header class="site-head">
   <a class="brand" href="/">FIELDLAB/PHYSICS</a>
-  <span>Zimbabwe Forms 5–6 · 2024–2030 alignment</span>
+  <span>Zimbabwe Forms 5–6 · Provisional alignment</span>
 </header>
 
 <main>
@@ -78,30 +44,33 @@
       </p>
     </div>
     <aside>
-      <span>Current expedition</span>
-      <strong>Mechanics</strong>
+      <span>Beyond Mechanics</span>
+      <strong>Oscillations<br />and Waves</strong>
       <p>
-        Travel from kinematics and collisions through forces, energy, circular
-        motion and gravitational fields.
+        Connect restoring forces and energy to phase, interference, diffraction
+        and resonance. Reason, solve and investigate in every chapter.
       </p>
-      <a href="/mechanics/">Enter Mechanics →</a>
+      <a href="/studies/waves/">Enter Waves →</a>
     </aside>
   </section>
 
   <section class="map" aria-labelledby="map-title">
     <header>
       <p class="eyebrow">Curriculum atlas</p>
-      <h2 id="map-title">Six territories.<br />One connected world.</h2>
+      <h2 id="map-title">Eight destinations.<br />One connected world.</h2>
+      <p>Editorial study areas, not a verified exhaustive syllabus. Communication
+        has its own destination; historically it sits within Modern Physics.
+        All alignment remains provisional.</p>
     </header>
     <ol>
       {#each areas as area}
-        <li class:active={area.status === "Active"} class={area.tone}>
+        <li class={`${area.tone} active`}>
           <span class="number">{area.index}</span>
           <div>
-            <h3>{area.name}</h3>
+            <h3><a href={area.href}>{area.name} ↗</a></h3>
             <p>{area.description}</p>
           </div>
-          <span class="status">{area.status}</span>
+          <span class="status">Workshops</span>
         </li>
       {/each}
     </ol>
@@ -118,13 +87,14 @@
     </header>
     <div class="lessons">
       <a class="lesson mechanics-core" href="/mechanics/">
-        <span>Complete strand · Ready</span>
+        <span>Six core reasoning workshops</span>
         <h3>A-Level Mechanics</h3>
         <p>
           Kinematics, dynamics, forces, momentum, energy, circular motion,
-          gravitation, practical analysis and exam preparation.
+          and gravitation. Derive the models, solve structured problems, transfer
+          the reasoning and analyse practical data in every heading.
         </p>
-        <strong>Start the full course ↗</strong>
+        <strong>Explore Mechanics ↗</strong>
       </a>
       <a class="lesson primary" href="/mechanics/projectile-motion/">
         <span>Deep core study · Ready</span>
@@ -144,14 +114,15 @@
         </p>
         <strong>Enter chaos ↗</strong>
       </a>
-      <article class="lesson upcoming">
-        <span>Bridge to the next territory</span>
+      <a class="lesson upcoming" href="/studies/waves/">
+        <span>Continue the reasoning</span>
         <h3>Oscillations → Waves</h3>
         <p>
-          Simple harmonic motion reuses force, energy and graph reasoning before
-          opening the Waves strand.
+          Four connected chapters: restoring forces and SHM, travelling waves,
+          interference and diffraction, stationary waves and resonance.
         </p>
-      </article>
+        <strong>Open Waves workshops ↗</strong>
+      </a>
     </div>
   </section>
 </main>
@@ -289,6 +260,9 @@
     margin: 0;
     font: 600 clamp(1.4rem, 3vw, 2.5rem) var(--serif);
   }
+  li h3 a { text-decoration:none; }
+  li h3 a:hover { text-decoration:underline; text-underline-offset:.2em; }
+  a:focus-visible { outline:2px solid var(--teal); outline-offset:4px; }
   li p {
     margin: 0.3rem 0 0;
     color: #58605d;

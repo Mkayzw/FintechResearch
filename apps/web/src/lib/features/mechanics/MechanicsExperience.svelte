@@ -40,7 +40,7 @@
   <title>A-Level Mechanics — Fieldlab Physics</title>
   <meta
     name="description"
-    content="A complete interactive provisional ZIMSEC A-Level Newtonian Mechanics course covering kinematics, dynamics, forces, energy, circular motion and gravitation."
+    content="A provisional ZIMSEC A-Level Mechanics map with six reasoning workshops: derivations, diagnostic multi-part problems, transfer questions and practical data analysis."
   />
 </svelte:head>
 
@@ -52,7 +52,7 @@
 <main>
   <section class="hero">
     <div>
-      <p class="eyebrow">Territory 01 · Complete Mechanics</p>
+      <p class="eyebrow">Territory 01 · Mechanics foundations</p>
       <h1>From motion<br />to <em>orbit.</em></h1>
       <p>
         Predict what happens. Expose the forces. Choose the system. Test the
@@ -82,7 +82,8 @@
       <h2 id="course-title">One chain of reasoning.</h2>
       <p>
         Move from describing motion to explaining it, accounting for it and
-        applying it to orbits.
+        applying it to orbits. Every heading includes a deeper reasoning,
+        problem-solving and investigation workshop. Explain the method, not just the number.
       </p>
     </header>
     <div class="course-shell">
@@ -151,7 +152,7 @@
               <p>{module.bridge}</p>
               <strong>{next.title} →</strong></button
             >{:else}<a class="next" href="#bridges"
-              ><span>Core complete</span>
+              ><span>End of the core map</span>
               <p>{module.bridge}</p>
               <strong>Continue to extensions ↓</strong></a
             >{/if}

@@ -1,10 +1,10 @@
 # ZIMSEC A-Level Physics Curriculum Research
 
-Research checked on 2026-09-12.
+Initial research: 2026-09-12. Cross-curriculum audit: 2026-10-23.
 
 ## Authority statement
 
-The official ZIMSEC syllabus portal is the intended primary source, but it was not returning usable syllabus content when this research was completed. The most complete accessible copy was a 58-page document titled **Revised Physics Syllabus F5-6 — MoPSE 2024–2030**, hosted by Scribd and uploaded by a user.
+The official ministry/ZIMSEC syllabus is the intended primary source. The [ministry's Heritage Based Curriculum directory](http://www.mopse.gov.zw/heritage-based-curriculum-syllabi) was readable on 23 October 2026 and lists A-Level Physics, but supplies no A-Level Physics document link. This confirms the subject listing, not its current objectives. The initial research used a 58-page document titled **Revised Physics Syllabus F5-6 — MoPSE 2024–2030**, hosted by Scribd and uploaded by a user; its complete text is not currently accessible here. A second, 56-page December 2024 mirror exposes partial page previews, not a fully readable competence matrix.
 
 All product claims derived from that copy must therefore use this wording:
 
@@ -23,7 +23,7 @@ Scientific correctness and curriculum examinability are separate claims. OpenSta
 | [NIST measurement uncertainty](https://physics.nist.gov/cuu/Uncertainty/) | Authoritative measurement reference | Reporting and combining uncertainty | Not a ZIMSEC mark scheme |
 | [NASA drag equation](https://www.grc.nasa.gov/www/k-12/VirtualAero/BottleRocket/airplane/drageq.html) | Authoritative technical reference | Quadratic-drag research extension | Not ZIMSEC core |
 
-## Verified provisional curriculum scope
+## Provisional Mechanics scope from the initial research
 
 The accessible mirror places these areas under Newtonian Mechanics:
 
@@ -84,19 +84,13 @@ These are standard consequences of the core model and reasonable applications of
 
 Extensions must deepen model criticism without displacing the vacuum model students need for examinations.
 
-## Provisional assessment model
+## Assessment model — conflicting evidence; weights withdrawn
 
-The accessible mirror gives the following structure. It must be rechecked against the official syllabus before being represented as final.
+The previous table recorded paper weights of 15%, 20%, 30%, 15% and a 20% project from the initial mirror interpretation. Do not use that table to generate assessment weighting or describe the current examination.
 
-| Paper | Mode | Raw marks | Duration | Weight | Product preparation |
-|---|---|---:|---:|---:|---|
-| 1 | Multiple choice | 40 | 1 hour | 15% | Concept discrimination, units, signs, graphs and common distractors |
-| 2 | Structured | 60 | 1 hour 30 minutes | 20% | Short derivations and linked calculations with visible method |
-| 3 | Free response | 100 | 2 hours 30 minutes | 30% | Extended Mechanics reasoning; the mirror describes General Physics and Newtonian Mechanics as the compulsory question area |
-| 4 | Practical | 50 | 2 hours 30 minutes | 15% | Apparatus, tables, graphs, uncertainty, analysis, evaluation and design |
-| 5 | School-based project | 50 | During the school year | 20% | Problem identification, investigation, solution generation, refinement, presentation and evaluation |
+The [56-page December 2024 mirror](https://www.scribd.com/document/816045036/Physics-a-Level-Syllabusdec2024final), physical-page preview 42 (internally numbered 4), instead shows Paper 3 Free Response: 100 marks, 2 hr 30 min, **32**; Paper 4 Practical: 50 marks, 2 hr 30 min, **16**; terminal total **80%**. Page 41 mentions a **20%** school-based project. This is a material conflict, not a rounding difference. The visible preview does not expose enough of the table to establish the remaining weights, so none are inferred from totals. Paper codes, compulsory-question arrangements, full assessment rules and version applicability remain unverified.
 
-No current official question-level mark scheme or command-word glossary was accessible. The application may coach transparent scientific working, but must not claim unverified rules for error-carried-forward, significant-figure penalties, units penalties or exact mark allocation.
+Teach multiple-choice discrimination, structured reasoning, extended responses, practical analysis and project evaluation without asserting current paper allocations. No current official question-level mark scheme was accessible. The mirror has glossary previews on physical pages 51–53, but the complete current official glossary was not verified. Do not invent error-carried-forward rules, significant-figure penalties, units penalties or exact mark allocations.
 
 ## Exam-answer discipline
 
@@ -126,6 +120,28 @@ The curriculum uses assessable verbs including **state**, **describe**, **explai
 
 - Obtain the official MoPSE/ZIMSEC PDF and record its publication identifier or checksum.
 - Confirm the current subject and paper codes.
-- Confirm the assessment table and the apparent ambiguity in Paper 4’s specification grid.
+- Resolve the conflicting assessment weights and version applicability; inspect the full assessment table and Paper 4 specification grid.
 - Obtain current official specimen papers, mark schemes and Chief Examiner reports.
 - Replace provisional wording only after those sources are archived and reviewed.
+
+## Depth-first research update · 23 October 2026
+
+The full official syllabus remains unverified in this environment. Earlier portal attempts failed; the subsequent successful ministry directory read is recorded in the authority statement above. The currently accessible Scribd preview does not expose the full document, and another syllabus mirror requires an account to download it. None establishes the complete current official objectives or assessment rules. The earlier Mechanics map remains provisional; the conflicting assessment weights have been withdrawn above.
+
+The new Kinematics workshop instead uses independently authored exercises and openly accessible scientific references:
+
+- [OpenStax: Motion with Constant Acceleration](https://openstax.org/books/university-physics-volume-1/pages/3-4-motion-with-constant-acceleration) — derivations, initial conditions and constant-acceleration assumptions.
+- [OpenStax: Finding Velocity and Displacement from Acceleration](https://openstax.org/books/university-physics-volume-1/pages/3-6-finding-velocity-and-displacement-from-acceleration) — integration, signed displacement and variable-acceleration boundaries.
+- [NIST: Uncertainty](https://physics.nist.gov/cuu/Uncertainty/) — uncertainty concepts; not an official ZIMSEC practical-marking rule.
+
+The trolley readings are synthetic training data, with explicitly stipulated bounds and neglected timing uncertainty. The endpoint gradient bound is a worst-case calculation, not a statistical confidence interval. Numeric feedback diagnoses mistakes but does not assess written reasoning or assign official marks. This distinction allows deeper scientific learning now without inventing curriculum authority.
+
+### Subsequent Mechanics depth pass
+
+Fresh official-page reads on 23 October 2026 did not resolve the curriculum audit: [ZIMSEC's syllabus page](https://www5.zimsec.co.zw/syllabi/) returned navigation/contact content without a Physics syllabus document; [MoPSE's syllabuses page](https://www.mopse.co.zw/syllabuses) returned “Account Suspended”. Neither page establishes current A-Level coverage, paper codes or assessment rules.
+
+The five additional workshops use OpenStax University Physics Volume 1 sections on impulse/collisions, friction/equilibrium/elasticity, work/energy, circular motion and gravitation, plus ESA's geostationary reference. Section-level links are attached to each chapter. These sources support the science, not current ZIMSEC examinability. All 15 structured problems and five datasets are independently authored; none is presented as an official past-paper question or Zimbabwe school measurement. All 76 numerical answers were recomputed independently and all 30 equations passed strict KaTeX rendering.
+
+## Beyond Mechanics: research and coverage audit
+
+See [Beyond Mechanics research](beyond-mechanics-research.md) for the evidence-rated full-area map, missing chapter contracts, worked numerical anchors, practical designs and scientific references. Modern Physics and General Physics must be tracked explicitly. Communication can have a separate product destination, but the readable historical Forms 5–6 guide groups it under Modern Physics; the homepage's six editorial territories are not an exhaustive official syllabus map.
