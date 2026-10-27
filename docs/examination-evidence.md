@@ -1,6 +1,6 @@
 # Examination evidence and written-answer teaching
 
-Research date: 26 October 2026. This extends the scientific topic research; it does not establish complete current syllabus coverage or examination readiness.
+Research dates: 26–27 October 2026. This extends the scientific topic research; it does not establish complete current syllabus coverage or examination readiness.
 
 ## Product requirement
 
@@ -30,7 +30,7 @@ These are historical examiner reports, not question papers or full marking schem
 | Paper 2 p. 3, Q6(a): generic noise answers without communication context | Explain corruption of information and why amplification does not itself improve SNR |
 | Paper 4 pp. 3–4, Q2(c): diameter repeats and cross-sectional-area uncertainty | Work through squared-diameter bound propagation and a specific instrument improvement |
 
-The first ten practice studies are independently authored prompts targeting these observed difficulties. Their numerical values are **not** reconstructed from the examiner reports' answer lists. The UI explicitly labels them “Examiner-informed practice”, not past-paper questions.
+Ten practice studies are independently authored prompts targeting these observed difficulties. Their numerical values are **not** reconstructed from the examiner reports' answer lists. The UI explicitly labels them “Examiner-informed practice”, not past-paper questions.
 
 ## Source-question worked solutions implemented
 
@@ -39,11 +39,29 @@ The freely accessible [Zimsake Physics 6032 ZIP](https://www.zimsake.co.zw/softi
 | Source | Questions used | Teaching focus |
 |---|---|---|
 | 6032/1 specimen | Q15 p. 9; Q22/Q24 p. 11; Q25/Q27 p. 12; Q32 p. 13 | Diffraction order, squared area conversion, nuclear charge versus mass number, final capacitor energy, flux linkage, latent heating |
-| 6032/2 specimen | Q7 p. 11; Q9 pp. 12–13 | Sensor selection and explanation; extended analogue/digital, fibre and satellite responses |
-| 6032/3 specimen | Q3(c) p. 9; Q4(c) p. 10 | Peak-to-peak versus rms, transformer losses; molecular pressure and two-state ideal-gas calculation |
+| 6032/2 specimen | Q2 p. 6; Q3 pp. 7–8; Q5 p. 9; Q6 p. 10; Q7 p. 11; Q8 pp. 11–12; Q9 pp. 12–13 | Gravitational energy, refraction drawing/critical angle, potentiometer diagnosis, induction heating, sensors, hydrostatic derivation, extended communication responses |
+| 6032/3 specimen | Q1(d)/Q2(a)/Q2(b) p. 6; Q3(c)/Q4(a–b) p. 9; Q4(c) p. 10; final Q4 part/Q5(b) p. 11 | Orbital derivation, vertical-spring proof, Young apparatus and estimates, transformer rms/losses, Bernoulli derivation, ideal gas, thermometry, modulation |
 | [6032/2 November 2022 public preview](https://www.scribd.com/document/821189272/n2022-p2-a-Lvl-Physics) | Q1 pp. 4–5, complete question | Wave and particle speed, constant-phase direction, diffraction/refraction definitions |
 
-There are ten specimen studies and one dated past-paper study, in addition to the ten examiner-informed practice studies. MCQ cover instructions establish one mark per question. Longer-question totals and printed group allocations are recorded without invented finer subdivisions. The capacitor circuit is described with its verified component connections and values; no missing diagram values are inferred.
+There are 21 specimen studies and one dated past-paper study, in addition to ten examiner-informed practice studies: 32 studies in total. The 27 October expansion adds eleven structured questions or explicitly identified parts, not eleven complete papers or eleven dated past-session questions. MCQ cover instructions establish one mark per question. Longer-question totals and printed group allocations are recorded without invented finer subdivisions. The capacitor circuit is described with its verified component connections and values; no missing diagram values are inferred.
+
+### Structured expansion · 27 October
+
+| Added source locator | Printed allocation | Independent answer / teaching boundary |
+|---|---|---|
+| P2 Q2, p. 6 | (a) [2], (b) [1], (c) [3] | ΔEp = −1.47 × 10⁷ J for 6R → 3R; distinguish signed change from positive energy-loss magnitude |
+| P2 Q3, pp. 7–8 | (a) [5], (b) [1] | Parallel emergent ray, 50° to horizontal; n = 1/sin c. Glass index is not supplied; no numerical air angle is invented |
+| P2 Q5, p. 9 | [3] | Voltmeter checks available wire drop, test emf and relative polarity; no invented numerical circuit |
+| P2 Q6, p. 10 | (a) [1], (b) [5] | Faraday → eddy currents → resistive heating; frequency comparison assumes comparable linked flux amplitude |
+| P2 Q8, pp. 11–12 | (a) [2], (b) [1] | Column force balance gives p − p0 = ρgh; separate gauge increment from absolute pressure |
+| P3 Q1(d), p. 6 | [7] | Derive T = 2π√[(R+h)³/(GM)] and v = √[GM/(R+h)]; compare circular endpoints, not a transfer path |
+| P3 Q2(a), p. 6 | [5] | Cancel static balance ke = mg to obtain mẍ = −kx, with x measured from equilibrium |
+| P3 Q2(b), p. 6 | [8] | Candidate chooses d and D. Our illustrative 0.30 mm and 2.0 m give 3.933… mm spacing for supplied 590 nm; neither chosen geometry is a paper given |
+| P3 Q4(a–b), p. 9 | (a) [2], (b) [6] | R = 2.2361245 × 10⁻³ m³/s; explicit continuity, pressure sign and negligible-loss Bernoulli assumptions |
+| P3 Q4, final part printed (c), p. 11 | [5] | Cryogenic-rated calibrated resistance thermometer and high-temperature radiation pyrometer are reasoned examples; source repeats part label (c) after (d) |
+| P3 Q5(b), p. 11 | [6] | Modulation, amplitude-noise rejection and conventional wideband FM resource costs; neither noise immunity nor universal cost ordering is asserted |
+
+Two original labelled solution drawings accompany refraction and Young's apparatus. They are teaching drawings, not source-figure reproductions. The air ray is schematic with symbolic angle; the Young drawing explicitly marks candidate-chosen dimensions. Their accessible descriptions carry the physical meaning, and narrow-screen readers can keyboard-scroll the drawing without horizontal page overflow. Existing interactive models remain separate and unchanged.
 
 The November 2022 public preview's two calculated speeds, 264 m/s and 1.32 × 10⁻³ m/s, agree with the official report. Its preview is text/OCR evidence, weaker than an authenticated official question PDF. Specimen Q4(c)'s tyre calculation requires interpreting temperature percentages on the Kelvin scale and pressure as absolute; the lesson states those assumptions instead of silently treating them as explicit source wording. Q3(c)'s correct secondary-turn result is approximately 111, not 313 from mixing rms with peak-to-peak voltage.
 
